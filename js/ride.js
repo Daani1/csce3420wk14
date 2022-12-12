@@ -176,3 +176,33 @@ let map;
 function displayUpdate(text, color='green') {
     $('#updates').prepend($(`<li style="background-color:${color}">${text}</li>`));
 }
+
+function getWeather(loc, unicorn) {
+    let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${loc.latitude}&lon=${loc.longitude}&exclude=minutely,hourly&appid=a099a51a6362902523bbf6495a0818aa`;
+    fetch(url)
+        .then(response => response.json())  //  wait for the response and convert it to JSON
+        .then(weather => {                  //  with the resulting JSON data do something
+            let wx = latLonToWeather(weather);
+            let innerHTML = '';
+            let msg;
+            innerHTML += `<h5>The low and high for the location:</h5>
+                        <p>Temp: Low ${wx.daily[0].min}&deg; / High: ${wx.daily[0].max}&deg;</p>`;
+            displayUpdate(innerHTML, unicorn.Color);
+
+            msg =  `Temp is ${KtoF(weather.current.temp)} degrees}`;
+
+            console.log(msg);
+        });
+}
+function latLonToWeather(data) {
+    let wx = {};
+    wx.daily = data.daily.map(d => ({
+        date:           niceDate(d.dt,data.timezone_offset),
+        min:            KtoF(d.temp.min),
+        max:            KtoF(d.temp.max),
+    }));
+    wx.city = "";
+    wx.lat  = data.lat;
+    wx.lon  = data.lon;
+    return wx;
+}
