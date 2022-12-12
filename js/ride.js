@@ -56,9 +56,10 @@ let map;
         console.log(pickupLocation);
         //  get the local weather, find nearby restaurants, movies
         let Currentlocation = document.getElementById('search').value;
-        if(Currentlocation){
+        if(Currentlocation.length == 0){
             getWeather(pickupLocation, unicorn)
         }
+        
         animateArrival(function animateCallback() {
             displayUpdate(unicorn.Name + ' has arrived. Giddy up!', unicorn.Color);
             WildRydes.map.unsetLocation();
@@ -192,7 +193,7 @@ function getWeather(location, unicorn) {
             innerHTML += `<h4>Date: ${wx.daily[0].date}</h4>
                           <h5>Temp:Low ${wx.daily[0].min} & high: ${wx.daily[0].max} </h5>
                           `;
-            displayUpdate(innerHTML,white);
+            displayUpdate(innerHTML,'white');
             msg = `Tempt is ${KtoF(weather.current.temp)} degrees.}`;
             console.log(msg);
         });
