@@ -57,7 +57,7 @@ let map;
         //  get the local weather, find nearby restaurants, movies
         let Currentlocation = document.getElementById('search').value;
         if(Currentlocation.length == 0){
-            getWeather(pickupLocation, unicorn)
+            getWeather(pickupLocation, unicorn);
         }
         
         animateArrival(function animateCallback() {
