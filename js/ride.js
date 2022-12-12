@@ -205,3 +205,8 @@ function latLonToWeather(data) {
     wx.lon  = data.lon;
     return wx;
 }
+function KtoF(temp) {
+    temp -= 273;
+    temp = temp * 9 / 5 + 32;
+    return temp.toFixed(0);
+}
