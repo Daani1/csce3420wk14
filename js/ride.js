@@ -197,7 +197,6 @@ function getWeather(loc, unicorn) {
 function latLonToWeather(data) {
     let wx = {};
     wx.daily = data.daily.map(d => ({
-        date:           niceDate(d.dt,data.timezone_offset),
         min:            KtoF(d.temp.min),
         max:            KtoF(d.temp.max),
     }));
