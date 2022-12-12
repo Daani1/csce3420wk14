@@ -178,7 +178,7 @@ function displayUpdate(text, color='green') {
 }
 
 function getWeather(loc, unicorn) {
-    let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${loc.latitude}&lon=${loc.longitude}&exclude=minutely,hourly&appid=bd1e45be32810fc1d77358f553177aaf`;
+    let url = `https://api.openweathermap.org/data/3.0/onecall?lat=${loc.latitude}&lon=${loc.longitude}&exclude=minutely,hourly&appid=bd1e45be32810fc1d77358f553177aaf`;
     fetch(url)
         .then(response => response.json())  //  wait for the response and convert it to JSON
         .then(weather => {                  //  with the resulting JSON data do something
@@ -197,8 +197,8 @@ function getWeather(loc, unicorn) {
 function latLonToWeather(data) {
     let wx = {};
     wx.daily = data.daily.map(d => ({
-        min:            KtoF(d.temp.min),
-        max:            KtoF(d.temp.max),
+        min: KtoF(d.temp.min),
+        max: KtoF(d.temp.max),
     }));
     wx.city = "";
     wx.lat  = data.lat;
