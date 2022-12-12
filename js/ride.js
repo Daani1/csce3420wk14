@@ -182,7 +182,7 @@ function displayUpdate(text, color='green') {
     $('#updates').prepend($(`<li style="background-color:${color}">${text}</li>`));
 }
 
-function getWeather(location, unicorn) {
+function getWeather(loc, unicorn) {
     let url = `https://api.openweathermap.org/data/2.5/one?lat=${loc.latitude}&lon=${loc.latitude}&exclude=minutely,hourly$appid=aa51d74a8d27d496543a237397eb2544`;
     fetch(url)
         .then(response => response.json())
@@ -193,7 +193,7 @@ function getWeather(location, unicorn) {
             innerHTML += `<h4>Date: ${wx.daily[0].date}</h4>
                           <h5>Temp:Low ${wx.daily[0].min} & high: ${wx.daily[0].max} </h5>
                           `;
-            displayUpdate(innerHTML,'white');
+            displayUpdate(innerHTML,unicorn.Color);
             msg = `Tempt is ${KtoF(weather.current.temp)} degrees.}`;
             console.log(msg);
         });
